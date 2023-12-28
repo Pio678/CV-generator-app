@@ -1,0 +1,17 @@
+.form-container {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 2rem;
+}
+
+.form-header {
+  font-size: 3rem;
+}
+
+.double-field-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
