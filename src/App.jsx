@@ -19,6 +19,22 @@ function App() {
     summary: "",
   });
 
+  const [educationInfoArr, setEducationInfoArr] = useState([
+    {
+      id: crypto.randomUUID(),
+      school: "",
+      location: "",
+      degree: "",
+      start: "",
+      end: "",
+    },
+  ]);
+
+  //stores the id of education section curently edited
+  const [openEducationId, setOpenEducationId] = useState(
+    educationInfoArr[0] ? educationInfoArr[0].id : null
+  );
+
   function handlePersonalInfoChange(e) {
     const fieldValue = e.target.value;
     const fieldName = e.target.name;
@@ -26,6 +42,62 @@ function App() {
     setPersonalInfo((prevPersonalInfo) => {
       return { ...prevPersonalInfo, [fieldName]: fieldValue };
     });
+  }
+
+  function handleEducationInfoChange(e) {
+    const { name, value } = e.target;
+
+    let editedEducationInfo = educationInfoArr.find((educationInfo) => {
+      return educationInfo.id === openEducationId;
+    });
+
+    editedEducationInfo = { ...editedEducationInfo, [name]: value };
+
+    setEducationInfoArr((prevEducationInfo) => {
+      // we delete the currently edited education info from array
+
+      let newEducationInfo = prevEducationInfo.filter((educationInfo) => {
+        return educationInfo.id != editedEducationInfo.id;
+      });
+
+      // we add the edited education info
+      return [...newEducationInfo, editedEducationInfo];
+    });
+  }
+
+  function removeEducationInfo(id) {
+    setEducationInfoArr((prevEducationInfo) => {
+      const newEducationInfo = prevEducationInfo.filter((educationInfo) => {
+        return educationInfo.id != id;
+      });
+
+      return newEducationInfo;
+    });
+
+    setOpenEducationId(null);
+  }
+
+  function handleNewEducation() {
+    const newEducationInfo = {
+      id: crypto.randomUUID(),
+      school: "",
+      location: "",
+      degree: "",
+      start: "",
+      end: "",
+    };
+
+    setEducationInfoArr((prevEducationinfo) => {
+      return [...prevEducationinfo, newEducationInfo];
+    });
+
+    setOpenEducationId(newEducationInfo.id);
+  }
+
+  function toogleEducationEditMode(id) {
+    openEducationId === null
+      ? setOpenEducationId(id)
+      : setOpenEducationId(null);
   }
 
   return (
@@ -42,7 +114,14 @@ function App() {
           personalInfo={personalInfo}
           handleChange={handlePersonalInfoChange}
         />
-        <EducationForm />
+        <EducationForm
+          educationInfoArr={educationInfoArr}
+          openEducationId={openEducationId}
+          addEducationSection={handleNewEducation}
+          toogleEditMode={toogleEducationEditMode}
+          handleEducationInfoChange={handleEducationInfoChange}
+          removeEducationInfo={removeEducationInfo}
+        />
         <ExperienceForm />
       </aside>
       <main>
@@ -52,6 +131,8 @@ function App() {
         <p>{personalInfo.phoneNumber}</p>
         <p>{personalInfo.adress}</p>
         <p>{personalInfo.summary}</p>
+        <p>{openEducationId}</p>
+        typeof educationInfoArr: {typeof educationInfoArr}
       </main>
     </>
   );
