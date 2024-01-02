@@ -1,4 +1,4 @@
-import deleteIcon from "../../assets/icons/trash_red.png";
+import deleteIcon from "../../assets/icons/trash.png";
 import editIcon from "../../assets/icons/edit.png";
 
 export default function EducationList({

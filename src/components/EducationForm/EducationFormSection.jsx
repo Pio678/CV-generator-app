@@ -81,12 +81,10 @@ export default function EducationFormSection({
       </div>
 
       <div className="form-button-container">
-       {
-        educ
         <button className="form-button delete-button" onClick={handleRemove}>
           Delete
         </button>
-       }
+
         <button className="form-button" onClick={toogleEditMode}>
           Save
         </button>

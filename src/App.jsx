@@ -7,6 +7,7 @@ import LogoIcon from "./assets/resume (2).png";
 
 import "./styles/normalize.css";
 import "./styles/App.css";
+import CV from "./components/CV/CV";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -32,7 +33,23 @@ function App() {
 
   //stores the id of education section curently edited
   const [openEducationId, setOpenEducationId] = useState(
-    educationInfoArr[0] ? educationInfoArr[0].id : null
+    educationInfoArr.length > 0 ? educationInfoArr[0].id : null
+  );
+
+  const [experienceInfoArr, setExperienceInfoArr] = useState([
+    {
+      id: crypto.randomUUID(),
+      company: "",
+      position: "",
+      start: "",
+      end: "",
+      description: "",
+    },
+  ]);
+
+  //stores id of experience curently edited
+  const [openExperienceId, setOpenExperienceId] = useState(
+    experienceInfoArr.length > 0 ? experienceInfoArr[0].id : null
   );
 
   function handlePersonalInfoChange(e) {
@@ -65,6 +82,22 @@ function App() {
     });
   }
 
+  function handleExperienceInfoChange(e) {
+    const { name, value } = e.target;
+
+    let editedExperienceInfo = experienceInfoArr.find((experienceInfo) => {
+      return experienceInfo.id === openExperienceId;
+    });
+
+    editedExperienceInfo = { ...editedExperienceInfo, [name]: value };
+
+    let newExperienceInfoArr = experienceInfoArr.filter((experienceInfo) => {
+      return experienceInfo.id != openExperienceId;
+    });
+
+    setExperienceInfoArr([...newExperienceInfoArr, editedExperienceInfo]);
+  }
+
   function removeEducationInfo(id) {
     setEducationInfoArr((prevEducationInfo) => {
       const newEducationInfo = prevEducationInfo.filter((educationInfo) => {
@@ -75,6 +108,20 @@ function App() {
     });
 
     setOpenEducationId(null);
+  }
+
+  function removeExperienceInfo(id) {
+    setExperienceInfoArr((prevExperienceInfoArr) => {
+      const newExperienceInfoArr = prevExperienceInfoArr.filter(
+        (experienceInfo) => {
+          return experienceInfo.id != id;
+        }
+      );
+
+      return newExperienceInfoArr;
+    });
+
+    setOpenExperienceId(null);
   }
 
   function handleNewEducation() {
@@ -92,6 +139,29 @@ function App() {
     });
 
     setOpenEducationId(newEducationInfo.id);
+  }
+
+  function addNewExperience() {
+    const newExperienceInfo = {
+      id: crypto.randomUUID(),
+      company: "",
+      position: "",
+      start: "",
+      end: "",
+      description: "",
+    };
+
+    setExperienceInfoArr((prevExperienceInfoArr) => {
+      return [...prevExperienceInfoArr, newExperienceInfo];
+    });
+
+    setOpenExperienceId(newExperienceInfo.id);
+  }
+
+  function toogleExperienceEditMode(id) {
+    openExperienceId === null
+      ? setOpenExperienceId(id)
+      : setOpenExperienceId(null);
   }
 
   function toogleEducationEditMode(id) {
@@ -122,17 +192,17 @@ function App() {
           handleEducationInfoChange={handleEducationInfoChange}
           removeEducationInfo={removeEducationInfo}
         />
-        <ExperienceForm />
+        <ExperienceForm
+          experienceInfoArr={experienceInfoArr}
+          openExperienceId={openExperienceId}
+          handleExperienceInfoChange={handleExperienceInfoChange}
+          toogleExperienc9eEditMode={toogleExperienceEditMode}
+          addNewExperience={addNewExperience}
+          removeExperienceInfo={removeExperienceInfo}
+        />
       </aside>
       <main>
-        <p>{personalInfo.firstName + personalInfo.lastName}</p>
-        <p>{personalInfo.position}</p>
-        <p>{personalInfo.email}</p>
-        <p>{personalInfo.phoneNumber}</p>
-        <p>{personalInfo.adress}</p>
-        <p>{personalInfo.summary}</p>
-        <p>{openEducationId}</p>
-        typeof educationInfoArr: {typeof educationInfoArr}
+        <CV personalInfo={personalInfo} />
       </main>
     </>
   );

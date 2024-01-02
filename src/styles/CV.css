@@ -1,0 +1,18 @@
+#CV {
+  background-color: white;
+  aspect-ratio: 210 / 297;
+  width: 95%;
+  place-self: center;
+}
+
+.export-button {
+  width: 10rem;
+  height: 5rem;
+  justify-self: center;
+}
+
+.position {
+  font-size: 1.8rem;
+  color: blue;
+  font-weight: 700;
+}
