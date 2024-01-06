@@ -2,6 +2,8 @@ import EducationFormSection from "./EducationFormSection";
 import "../../styles/form.css";
 import EducationList from "./EducationList";
 
+import educationIcon from "../../assets/icons/education.png";
+
 function EducationForm({
   educationInfoArr,
   openEducationId,
@@ -40,7 +42,10 @@ function EducationForm({
 
   return (
     <form className="form-container">
-      <h3 className="form-header">Education</h3>
+      <div className="form-header-container">
+        <img className="form-section-icon" src={educationIcon} />
+        <h3 className="form-header">Education</h3>
+      </div>
 
       {educationContent}
     </form>

@@ -16,7 +16,7 @@ export default function EducationFormSection({
           name="school"
           value={educationInfo.school}
           onChange={handleChange}
-          placeholder="University of Birmingham"
+          placeholder="University of London"
         ></input>
       </div>
 
@@ -30,7 +30,7 @@ export default function EducationFormSection({
           name="location"
           value={educationInfo.location}
           onChange={handleChange}
-          placeholder="Birmingham, UK"
+          placeholder="London, UK"
         />
       </div>
 

@@ -1,4 +1,5 @@
 import ExperienceFormSection from "./ExperienceFormSection";
+import experienceIcon from "../../assets/icons/experience.png";
 
 import "../../styles/form.css";
 import ExperienceList from "./ExperienceList";
@@ -39,7 +40,11 @@ export default function ExperienceForm({
 
   return (
     <form className="form-container">
-      <h3 className="form-header">Work Experience</h3>
+      <div className="form-header-container">
+        <img className="form-section-icon" src={experienceIcon} />
+        <h3 className="form-header">Work Experience</h3>
+      </div>
+
       {experienceContent}
     </form>
   );

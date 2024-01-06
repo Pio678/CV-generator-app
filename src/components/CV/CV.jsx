@@ -2,43 +2,34 @@ import { Canvas } from "@react-pdf/renderer";
 import "../../styles/CV.css";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import CvPersonals from "./CvPersonals";
+import CvContacts from "./CvContacts";
+import CvSkills from "./CvSkills";
+import CvEducation from "./CvEducation";
+import CvExperience from "./CvExperience";
 
-export default function CV({ personalInfo }) {
+export default function CV({
+  personalInfo,
+  skillsArr,
+  educationInfoArr,
+  experienceInfoArr,
+}) {
   const { firstName, lastName, position, email, phoneNumber, adress, summary } =
     personalInfo;
 
-  function exportCV() {
-    const input = document.getElementById("CV");
-    html2canvas(input, {
-      logging: true,
-      letterRendering: 1,
-      useCORS: true,
-    }).then((canvas) => {
-      const imgWidth = 208;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      const imgData = canvas.toDataURL("img/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save(`${firstName}_${lastName}_CV.pdf`);
-    });
-  }
-
+  console.log(skillsArr);
   return (
-    <>
-      <button className="export-button" onClick={() => exportCV()}>
-        export CV
-      </button>
-
-      <div id="CV">
-        <h1>
-          {firstName} {lastName}
-        </h1>
-        <p>
-          <p className="position">{position}</p>
-          {email}
-          {phoneNumber}
-        </p>
+    <div id="CV">
+      <div className="side-background">
+        {/* this div fixes bug with grid line showing on pdf  */}
       </div>
-    </>
+      <CvContacts personalInfo={personalInfo} />
+      <CvPersonals personalInfo={personalInfo} />
+      <CvSkills skills={skillsArr} />
+      <div className="cv-main">
+        <CvEducation educationInfoArr={educationInfoArr} />
+        <CvExperience experienceInfoArr={experienceInfoArr} />
+      </div>
+    </div>
   );
 }

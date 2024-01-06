@@ -1,4 +1,5 @@
 import "../styles/form.css";
+import personalsIcon from "../assets/icons/user.png";
 
 function PersonalInfoForm({
   firstName,
@@ -12,7 +13,10 @@ function PersonalInfoForm({
 }) {
   return (
     <form className="form-container">
-      <h3 className="form-header">Personal Information</h3>
+      <div className="form-header-container">
+        <img className="form-section-icon" src={personalsIcon} />
+        <h3 className="form-header">Personal Information</h3>
+      </div>
 
       <div className="double-field-container">
         <div className="form-field">
@@ -72,7 +76,7 @@ function PersonalInfoForm({
           name="email"
           value={email}
           onChange={handleChange}
-          placeholder="JohnSmith1580@gmail.com"
+          placeholder="JohnSmith15@gmail.com"
         />
       </div>
 

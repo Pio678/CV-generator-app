@@ -1,18 +1,175 @@
 #CV {
-  background-color: white;
+  position: sticky;
+  top: 3rem;
   aspect-ratio: 210 / 297;
-  width: 95%;
-  place-self: center;
+  width: clamp(70rem, 95%, 100rem);
+  margin: 3rem 1rem 3rem 1rem;
+  display: grid;
+  gap: 0;
+  grid-template-columns: 3fr 7fr;
+  grid-template-rows: min-content 1fr;
+  box-shadow: 0 0.2rem 0.5rem #998fa9;
+  background-color: white;
 }
 
-.export-button {
-  width: 10rem;
-  height: 5rem;
-  justify-self: center;
+.side-background {
+  grid-row: 1/3;
+  grid-column: 1/2;
+  background-color: #027bde;
 }
 
-.position {
+.cv-personal-info-container {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  padding-left: 4rem;
+  width: 100%;
+  background-color: white;
+}
+
+.cv-name {
+  font-size: 4.6rem;
+  width: 70%;
+  margin-top: 4rem;
+  color: #027bde;
+}
+
+.cv-position {
+  font-size: 2.6rem;
+}
+
+.cv-summary {
+  font-size: 2rem;
+  width: 85%;
+  margin-top: 2rem;
+  overflow-wrap: break-word;
+}
+
+.cv-name,
+.cv-position,
+.cv-summary {
+  overflow-wrap: break-word;
+}
+
+.cv-contacts-container {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #027bde;
+  color: white;
+  padding-left: 2rem;
+}
+
+.cv-side-header {
+  font-size: 2.5rem;
+}
+
+.cv-contact {
+  display: flex;
+  align-items: center;
   font-size: 1.8rem;
-  color: blue;
+}
+
+.cv-contact-icon {
+  height: 2.4rem;
+  margin-right: 1rem;
+}
+
+.cv-skills-container {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: #027bde;
+  color: white;
+  padding-left: 2rem;
+  padding-top: 4rem;
+}
+
+.cv-skill-list {
+  padding-top: 2rem;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style-type: none;
+}
+
+.cv-main {
+  padding-top: 4rem;
+  padding-left: 4rem;
+  background-color: white;
+}
+.experience-header,
+.education-header {
+  color: #027bde;
+  width: 90%;
+  font-size: 3rem;
+  padding: 0.5rem;
+}
+
+.cv-education-entry-container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  grid-template-areas: "time degree" ". school";
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cv-experience-time,
+.cv-education-time {
+  grid-area: time;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+}
+
+.cv-education-degree {
+  grid-area: degree;
+  font-size: 2.5rem;
   font-weight: 700;
+}
+
+.cv-school-info {
+  grid-area: school;
+  display: flex;
+  gap: 1rem;
+}
+.cv-school-name {
+  font-size: 2rem;
+}
+
+.cv-school-location {
+  font-size: 2rem;
+  color: rgb(100, 97, 97);
+}
+
+.cv-experience-container {
+  margin-top: 4rem;
+}
+
+.cv-experience-entry-container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  grid-template-areas: "time company" ". position" ". description";
+  gap: 1rem;
+
+  margin-top: 2rem;
+  width: 85%;
+}
+
+.cv-experience-company {
+  font-size: 2.5rem;
+  font-weight: 700;
+  grid-area: company;
+}
+.cv-experience-position {
+  font-size: 2rem;
+  grid-area: position;
+  color: #027bde;
+}
+.cv-experience-description {
+  font-size: 1.8rem;
+  grid-area: description;
 }

@@ -34,7 +34,7 @@ export default function EducationList({
 function EducationListItem({ educationInfo, toogleEditMode, handleDelete }) {
   return (
     <div className="form-item">
-      <h4 className="form-item-title">{educationInfo.school}</h4>
+      <p className="form-item-title">{educationInfo.school}</p>
       <div className="list-item-buttons-container">
         <img
           onClick={toogleEditMode}

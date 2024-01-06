@@ -34,7 +34,7 @@ export default function ExperienceList({
 function ExperienceListItem({ experienceInfo, toogleEditMode, handleDelete }) {
   return (
     <div className="form-item">
-      <h4 className="form-item-title">{experienceInfo.company}</h4>
+      <p className="form-item-title">{experienceInfo.company}</p>
       <div className="list-item-buttons-container">
         <img
           onClick={toogleEditMode}
