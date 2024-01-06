@@ -3,9 +3,9 @@ App made as part of Odin Project React course. The App allows users to generate 
 
 # technology
 
-*React 
-*vite 
-*html2canvas - allows to take screenshot of element and export it as pdf
-*jspdf
+* React 
+* vite 
+* html2canvas - allows to take screenshot of element and export it as pdf
+* jspdf
 
  
