@@ -1,8 +1,11 @@
-# React + Vite
+# CV generator 
+App made as part of Odin Project React course. The App allows users to generate CV based on input data. You can export the CV as pdf file.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# technology
 
-Currently, two official plugins are available:
+*React 
+*vite 
+*html2canvas - allows to take screenshot of element and export it as pdf
+*jspdf
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 
